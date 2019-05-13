@@ -11,8 +11,7 @@
 
 using namespace std;
 using namespace cv;
-
-string img_folder(IMG_FOLDER);
+using namespace xt::placeholders;
 
 void predcolor(string imgPath)
 {
@@ -34,7 +33,7 @@ void predcolor(string imgPath)
 	int bw = cvRound(pw / histSize);
 
 	xt::xarray<float> harray = xt::zeros<float>({ histSize });
-
+		
 	for (int i = 1; i < histSize; i++)
 	{
 		harray[i] = hist.at<float>(i);
@@ -44,15 +43,27 @@ void predcolor(string imgPath)
 			Point(bw * i, ph - cvRound(hist.at<float>(i))),
 			an::hsvToRgbColor((float)i*2,1,1), 1);
 	}
-		
 
-	imshow("histograma", histPlot);
-	waitKey();
+	xt::xarray<float> topcolors = xt::view(xt::argsort(harray), xt::range(-3, _));
+	auto colorNames = an::maisOuMenosColorName(topcolors);
 		
-	cout << xt::argsort(harray) << endl;
+	Point tpos(350, 50);
+	for (string color : colorNames)
+	{
+		putText(histPlot, color, tpos, FONT_HERSHEY_SIMPLEX, 0.7, Scalar::all(200) , 1);		
+		tpos.y += 30;
+		cout << color << endl;
+	}		
+
+	imshow("original", img);
+	imshow("histograma", histPlot);
+	
+	waitKey();
 }
 
-int main(int, char**)
-{
-	predcolor(img_folder + "\\a1\\futebol.jpg");
+int main(int argc, char* argv[])
+{		
+	predcolor(GetImgFolder(argv) + "\\a1\\futebol.jpg");
+	predcolor(GetImgFolder(argv) + "\\a1\\moda.jpg");	
+	predcolor(GetImgFolder(argv) + "\\a1\\simpsons.jpeg");
 }
