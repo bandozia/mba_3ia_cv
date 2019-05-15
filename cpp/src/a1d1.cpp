@@ -63,7 +63,7 @@ void predcolor(string imgPath)
 
 int main(int argc, char* argv[])
 {		
-	predcolor(GetImgFolder(argv) + "\\a1\\futebol.jpg");
-	predcolor(GetImgFolder(argv) + "\\a1\\moda.jpg");	
-	predcolor(GetImgFolder(argv) + "\\a1\\simpsons.jpeg");
+    predcolor(GetImgFolder(argv,"a1") + "futebol.jpg");
+    predcolor(GetImgFolder(argv,"a1") + "moda.jpg");
+    predcolor(GetImgFolder(argv,"a1") + "simpsons.jpeg");
 }

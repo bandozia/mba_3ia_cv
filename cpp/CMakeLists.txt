@@ -3,8 +3,7 @@ project(mba_cv VERSION 0.1.0)
 
 include(CTest)
 enable_testing()
-set(OpenCV_DIR E:\\Recursos\\opencv\\build\\x64\\vc15\\lib)
-set(EXECUTABLE_OUTPUT_PATH E:\\Andozianos\\mba_3ia_cv\\cpp\\build)
+set(EXECUTABLE_OUTPUT_PATH build)
 find_package( OpenCV REQUIRED )
 
 add_executable(main src/main.cpp)

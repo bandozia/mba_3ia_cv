@@ -1,8 +1,9 @@
 #include <iostream>
+#include <vars.h>
 
 using namespace std;
 
-int main(int, char**) 
+int main(int argc, char* argv[])
 {
-	cout << "ok" << endl;
+    cout << "Img Dir:" << GetImgFolder(argv,"a1") << endl;
 }

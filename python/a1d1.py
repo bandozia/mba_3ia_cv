@@ -55,4 +55,4 @@ def get_maisoumenos_nome_das_cores(huelist, halfdisk=True):
 
 
 
-predocolor("../images/a1/futebol.jpg")
+predocolor("../images/a1/moda.jpg")
